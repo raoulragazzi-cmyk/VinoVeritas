@@ -10,6 +10,19 @@
 - Current historical default branch: `splendoria.vip`
 - Repository visibility: public — production source import remains gated pending privacy decision
 
+## Canonical deployment filenames — NON-NEGOTIABLE
+For every VinoVeritas delivery, hotfix, recovery file or upload package, use these exact filenames only:
+- Backend/API Worker `vinoveritas-api` → **`VinoVeritas-Worker.txt`**
+- Frontend/assets Worker `vinoveritasstudioweb` → **`index.html`**
+
+Do not create user-facing VinoVeritas deploy files with alternative names such as `finale`, `fix`, version numbers, `API_WORKER`, `frontend`, `stable`, or similar suffixes/prefixes. Internal working copies may have temporary names, but before handoff they MUST be normalized to the two canonical filenames above.
+
+Before telling the owner which file to upload, explicitly verify:
+- `VinoVeritas-Worker.txt` is JavaScript Worker source and targets only `vinoveritas-api`;
+- `index.html` is HTML frontend source and targets only `vinoveritasstudioweb`.
+
+Never instruct the owner to paste `index.html` into `vinoveritas-api` or `VinoVeritas-Worker.txt` into `vinoveritasstudioweb`.
+
 ## Cloudflare production fingerprint
 - Account ID: `9ea664e4c34f649045f64024e0db52e1`
 - API Worker: `vinoveritas-api`
@@ -47,6 +60,7 @@ Do NOT deploy production unless all are true:
 5. exact live source/bindings were captured and compared with the proposed source;
 6. e-label protected area is untouched unless explicitly authorized;
 7. rollback target is known;
-8. applicable tests are green.
+8. applicable tests are green;
+9. handoff filenames comply with the canonical naming rule (`VinoVeritas-Worker.txt` / `index.html`).
 
 If any fingerprint is ambiguous, STOP rather than deploy.
