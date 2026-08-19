@@ -2,6 +2,12 @@
 
 These instructions apply to any AI coding agent or automated contributor working in this repository.
 
+## Mandatory project identity gate
+
+Before any write, migration, Cloudflare change or deploy, read `PROJECT_FINGERPRINT.md` and verify that the repository, target Worker, target domain and production D1 ID all match VinoVeritas. If live infrastructure disagrees with the fingerprint, STOP and perform read-only verification first.
+
+Never infer the project from UI appearance, filenames or nearby conversation context.
+
 ## Current repository state
 
 VinoVeritas is in controlled bootstrap. Cloudflare live remains authoritative until the exact deployed Worker/frontend are captured, hashed, compared and imported according to Issue #1.
@@ -36,12 +42,14 @@ For normal changes after bootstrap:
 5. open a PR with risk, data, rollback and customer impact;
 6. pass CI;
 7. validate on isolated staging with synthetic data;
-8. deploy production only after the release gate;
-9. run health/public-route acceptance and record rollback target.
+8. repeat the Project Identity Gate immediately before production deploy;
+9. deploy production only after the release gate;
+10. run health/public-route acceptance and record rollback target.
 
 ## Release blockers
 
 Stop rather than work around any of these:
+- project fingerprint mismatch or ambiguity;
 - cross-winery data access;
 - regulatory QR/e-label route regression;
 - compliance data loss or marketing injected into the regulatory layer;
@@ -62,6 +70,7 @@ For Communication Section 2, test each card end-to-end through its public page. 
 ## Read first
 
 Before changing protected or high-risk code, read:
+- `PROJECT_FINGERPRINT.md`
 - `docs/ENGINEERING_GOVERNANCE.md`
 - `docs/PROTECTED_AREAS.md`
 - `docs/ACCEPTANCE_MATRIX.md`
