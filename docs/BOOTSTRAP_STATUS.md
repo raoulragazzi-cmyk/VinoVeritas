@@ -10,7 +10,7 @@ Stato: **bloccato volontariamente sul deploy production** fino alla cattura del 
 - baseline storiche inventariate con SHA-256;
 - `.gitignore` per secret, dump e database;
 - Pull Request template;
-- Bootstrap Safety Guard registrato;
+- Bootstrap Safety Guard registrato anche sul branch base `main` per rendere effettivi i controlli PR;
 - Issue #1 per import baseline production;
 - Issue #2 per normalizzazione default branch.
 
