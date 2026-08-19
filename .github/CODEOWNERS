@@ -1,0 +1,10 @@
+# Default owner
+* @raoulragazzi-cmyk
+
+# High-risk product areas once production source is imported
+/worker/ @raoulragazzi-cmyk
+/frontend/ @raoulragazzi-cmyk
+/migrations/ @raoulragazzi-cmyk
+/wrangler.toml @raoulragazzi-cmyk
+/.github/workflows/ @raoulragazzi-cmyk
+/scripts/ @raoulragazzi-cmyk
