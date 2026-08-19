@@ -1,0 +1,71 @@
+# AGENTS.md — VinoVeritas
+
+These instructions apply to any AI coding agent or automated contributor working in this repository.
+
+## Current repository state
+
+VinoVeritas is in controlled bootstrap. Cloudflare live remains authoritative until the exact deployed Worker/frontend are captured, hashed, compared and imported according to Issue #1.
+
+Do not treat historical copies as deployable source.
+
+## Non-negotiable protected area
+
+### Regulatory e-label — FROZEN BY DEFAULT
+
+Do not modify regulatory e-label behavior, schema, QR resolution, public route, ingredients/nutrition/compliance rendering or regulatory language behavior unless the product owner explicitly authorizes that specific change.
+
+Never mix marketing, sales CTA, Sommelier content or promotional tracking into the regulatory e-label layer.
+
+Bootstrap/import work must reproduce live e-label behavior exactly; bootstrap is not permission to refactor it.
+
+## Bootstrap safety
+
+- Do not add deployable production source while the repository is public.
+- Do not add production secrets, `.env`, `.dev.vars`, database dumps or customer exports to Git.
+- Do not create Cloudflare deploy automation until the verified production baseline is in Git and staging exists.
+- Do not deploy historical `REFERENCE ONLY` files.
+- Do not mutate production D1/R2 as part of bootstrap.
+
+## Engineering workflow
+
+For normal changes after bootstrap:
+1. understand the product request and classify risk;
+2. create/update an Issue when the change is not trivial;
+3. work on a dedicated branch;
+4. add/adjust regression tests;
+5. open a PR with risk, data, rollback and customer impact;
+6. pass CI;
+7. validate on isolated staging with synthetic data;
+8. deploy production only after the release gate;
+9. run health/public-route acceptance and record rollback target.
+
+## Release blockers
+
+Stop rather than work around any of these:
+- cross-winery data access;
+- regulatory QR/e-label route regression;
+- compliance data loss or marketing injected into the regulatory layer;
+- unverified payment unlock;
+- staging bound to production customer data/resources by accident;
+- secrets committed to Git;
+- destructive D1/R2 action without explicit target, ownership check and recovery plan.
+
+## Product invariants
+
+Preserve the intended journey:
+`winery/account -> wine/reference -> regulatory e-label -> Communication/Marketing -> Sommelier -> Analytics`
+
+UI should converge on one canonical wine/reference concept and one obvious next action rather than duplicate CTAs.
+
+For Communication Section 2, test each card end-to-end through its public page. `Eventi ed enoturismo` must validate the `PUBBLICA PAGINA EVENTO` route against the current live routing contract after baseline capture.
+
+## Read first
+
+Before changing protected or high-risk code, read:
+- `docs/ENGINEERING_GOVERNANCE.md`
+- `docs/PROTECTED_AREAS.md`
+- `docs/ACCEPTANCE_MATRIX.md`
+- `RELEASE_CHECKLIST.md`
+- `SECURITY.md`
+
+When these instructions conflict with an old chat/file/reference copy, the current repository governance and verified production baseline win.
