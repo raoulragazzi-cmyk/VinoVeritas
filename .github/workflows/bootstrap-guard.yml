@@ -45,6 +45,21 @@ jobs:
             exit 1
           fi
 
+      - name: Block production source while repository is public
+        shell: bash
+        env:
+          REPOSITORY_VISIBILITY: ${{ github.event.repository.visibility }}
+        run: |
+          set -euo pipefail
+          production_files="$(git ls-files | grep -E '^(src/|public/|apps/|frontend/|worker-api/|migrations/|worker\.js$|index\.html$|wrangler\.(jsonc|toml)$)' || true)"
+          if [[ -n "$production_files" && "${REPOSITORY_VISIBILITY:-public}" != "private" ]]; then
+            echo "Production/deployable source is forbidden while this repository is public."
+            echo "Make the repository private and re-run this guard before importing the live baseline."
+            printf '%s\n' "$production_files"
+            exit 1
+          fi
+          echo "Repository visibility/source gate passed."
+
       - name: Reject deployment automation during bootstrap
         shell: bash
         run: |
