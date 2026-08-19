@@ -8,6 +8,21 @@ Before any write, migration, Cloudflare change or deploy, read `PROJECT_FINGERPR
 
 Never infer the project from UI appearance, filenames or nearby conversation context.
 
+## Mandatory canonical filenames
+
+Every user-facing VinoVeritas deployment file MUST be handed off with exactly one of these two names:
+
+- **`VinoVeritas-Worker.txt`** → only for Cloudflare Worker **`vinoveritas-api`**
+- **`index.html`** → only for Cloudflare Worker/assets **`vinoveritasstudioweb`**
+
+Never give the owner alternative deployment filenames such as `final`, `fix`, `stable`, version numbers, `API_WORKER`, `frontend`, or other variants. Temporary internal filenames are allowed only during development; normalize them before handoff.
+
+Before presenting a download link, verify the file type and target:
+- `VinoVeritas-Worker.txt` must contain Worker JavaScript, not HTML;
+- `index.html` must contain frontend HTML, not Worker source.
+
+Never tell the owner to paste `index.html` into `vinoveritas-api`. Never tell the owner to upload `VinoVeritas-Worker.txt` to `vinoveritasstudioweb`.
+
 ## Current repository state
 
 VinoVeritas is in controlled bootstrap. Cloudflare live remains authoritative until the exact deployed Worker/frontend are captured, hashed, compared and imported according to Issue #1.
@@ -56,7 +71,8 @@ Stop rather than work around any of these:
 - unverified payment unlock;
 - staging bound to production customer data/resources by accident;
 - secrets committed to Git;
-- destructive D1/R2 action without explicit target, ownership check and recovery plan.
+- destructive D1/R2 action without explicit target, ownership check and recovery plan;
+- VinoVeritas deployment file presented with a non-canonical filename or ambiguous target.
 
 ## Product invariants
 
