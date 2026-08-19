@@ -1,0 +1,28 @@
+# Dependencies / build
+node_modules/
+dist/
+.wrangler/
+
+# Environment / secrets
+.dev.vars
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Backups / exports
+backups/
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.bak
+
+# Logs / temp
+*.log
+.tmp/
+tmp/
+.DS_Store
+Thumbs.db
